@@ -6,6 +6,4 @@
     state: "restarted"
 
 - name: 'restart gosleepd'
-  service:
-    name: "gosleepd"
-    state: "restarted"
+  command: 'systemctl restart gosleepd.service'
