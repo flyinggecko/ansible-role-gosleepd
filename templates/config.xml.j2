@@ -2,8 +2,8 @@
   <interval>1m</interval>
   <client>
     <retries>{{ gosleep_client_retries if gosleep_client_retries is defined else "5" }}</retries>
-    <delay>{{ gosleep_client_delay if gosleep_client_delay is defined else "5s") }}</delay>
-    <broadcastip>{{ gosleep_client_broadcastip if gosleep_client_broadcastip is defined else "255.255.255.255") }}</broadcastip>
+    <delay>{{ gosleep_client_delay if gosleep_client_delay is defined else "5s" }}</delay>
+    <broadcastip>{{ gosleep_client_broadcastip if gosleep_client_broadcastip is defined else "255.255.255.255" }}</broadcastip>
   </client>
   <server>
     <idletime>{{ gosleep_server_time if gosleep_server_time is defined else "30m" }}</idletime>
