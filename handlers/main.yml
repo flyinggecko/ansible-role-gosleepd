@@ -1,9 +1,7 @@
 ---
 
 - name: 'restart nfs-kernel-server'
-  service:
-    name: "nfs-kernel-server"
-    state: "restarted"
+  command: 'systemctl restart nfs-kernel-server.service'
 
 - name: 'restart gosleepd'
   command: 'systemctl restart gosleepd.service'
