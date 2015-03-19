@@ -1,5 +1,10 @@
 ---
 
+- name: 'restart nfs-kernel-server'
+  service:
+    name: "nfs-kernel-server"
+    state: "restarted"
+
 - name: 'restart gosleepd'
   service:
     name: "gosleepd"

@@ -9,7 +9,7 @@
   with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common', 'ethtool' ]
   when:
     server == "true"
-  notify: [ 'restart gosleepd' ]
+  notify: [ 'restart gosleepd', 'restart nfs-kernel-server' ]
 
 - name: enable gosleepd
   service:
@@ -41,7 +41,7 @@
     mode: "0644"
     owner: "root"
     group: "root"
-  notify: [ 'restart gosleepd' ]
+  notify: [ 'restart gosleepd', 'restart nfs-kernel-server' ]
 
 - name: configure gosleepd (/etc/exports)
   template:
