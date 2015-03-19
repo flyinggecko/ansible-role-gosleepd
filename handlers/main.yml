@@ -2,5 +2,5 @@
 
 - name: 'restart gosleepd'
   service:
-      name: "gosleepd"
-      state: "restarted"
+    name: "gosleepd"
+    state: "restarted"

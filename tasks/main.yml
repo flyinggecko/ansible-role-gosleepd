@@ -41,7 +41,7 @@
     mode: "0644"
     owner: "root"
     group: "root"
-  notify: [ 'restart gosleep' ]
+  notify: [ 'restart gosleepd' ]
 
 - name: configure gosleepd (/etc/exports)
   template:
