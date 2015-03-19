@@ -9,6 +9,6 @@
     <idletime>{% gosleep_server_time if gosleep_server_time is defined else "30m" %}</idletime>
     <method>{% gosleep_server_method if gosleep_server_method is defined else "hibernate" %}</method>
     <host>{% gosleep_server_host if gosleep_server_host is defined else "" %}</host>
-    <port>{% gosleep_server_port | default("8762") %}</port>
+    <port>{% gosleep_server_port if gosleep_server_port is defined else "8762" %}</port>
   </server>
 </config>
