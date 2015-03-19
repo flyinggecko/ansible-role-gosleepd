@@ -1,6 +1,6 @@
 ---
 
 - name: 'restart gosleepd'
-    service:
-        name: "gosleepd"
-        state: "restarted"
+  service:
+      name: "gosleepd"
+      state: "restarted"
