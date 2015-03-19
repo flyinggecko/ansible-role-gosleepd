@@ -6,7 +6,7 @@
     name: "{{ item }}"
     install_recommends: "no"
     state: "{{ state }}"
-  with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common' ]
+  with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common', 'ethtool' ]
   when:
     server == "true"
 
@@ -22,7 +22,7 @@
     name: "{{ item }}"
     install_recommends: "no"
     state: "{{ state }}"
-  with_items: [ 'gowakeup', 'nfs-common' ]
+  with_items: [ 'gowakeup', 'nfs-common', 'fuse' ]
   when:
     server == "false"
 
