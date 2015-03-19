@@ -27,13 +27,6 @@
   when:
     server == "false"
 
-- name: enable gowakeup
-  service:
-    name: "gowakeup"
-    enabled: "yes"
-  when:
-    server == "false"
-
 - name: configure gowakeup/gosleepd (/etc/gosleep/config.xml)
   template:
     src: config.xml.j2
@@ -80,5 +73,12 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  when:
+    server == "false"
+
+- name: enable gowakeup
+  service:
+    name: "gowakeup"
+    enabled: "yes"
   when:
     server == "false"
