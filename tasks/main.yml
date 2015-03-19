@@ -9,9 +9,6 @@
   with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common' ]
   when:
     server == true
-- name: configure gosleep-server (/etc/gosleep/config.xml)
-  when:
-    server == true
 
 - name: install gowakeup
   apt:
@@ -21,6 +18,17 @@
   with_items: [ 'gowakeup', 'nfs-common' ]
   when:
     server == false
+
+- name: configure gowakeup/gosleepd (/etc/gosleep/config.xml)
+  template:
+    src: config.xml.j2
+    dest: "/etc/gosleep/config.xml"
+    mode: "0644"
+    owner: "root"
+    group: "root"
+  when:
+    server == false
+
 - name: configure gowakeup (/etc/ethers)
   template:
     src: ethers.j2
@@ -30,15 +38,7 @@
     group: "root"
   when:
     server == false
-- name: configure gowakeup (/etc/gosleep/config.xml)
-  template:
-    src: config.xml.j2
-    dest: "/etc/gosleep/config.xml"
-    mode: "0644"
-    owner: "root"
-    group: "root"
-  when:
-    server == false
+
 - name: configure gowakeup-start script (/usr/local/sbin/gowakeup-start)
   template:
     src: gowakeup-start.j2
@@ -48,6 +48,7 @@
     group: "root"
   when:
     server == false
+    
 - name: configure gowakeup (/etc/systemd/system/gowakeup.service)
   copy:
     src: gowakeup.service
