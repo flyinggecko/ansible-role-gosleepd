@@ -1,0 +1,4 @@
+---
+# defaults file for gosleepd
+state: "{{ gosleep_state | default('latest') }}"
+server: "{{ gosleep_server | default('true') }}"

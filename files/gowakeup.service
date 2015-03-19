@@ -1,0 +1,11 @@
+[Unit]
+Description=Service-file for mount nfs-mounts at startup with a bash-script in /usr/local/sbin/gowakeup-start
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/local/sbin/gowakeup-start
+ExecStop=/bin/true
+
+[Install]
+WantedBy=multi-user.target

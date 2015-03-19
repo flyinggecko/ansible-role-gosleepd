@@ -1,0 +1,14 @@
+<config>
+  <interval>1m</interval>
+  <client>
+    <retries>{% gosleep_client_retries if gosleep_client_retries is defined else "5" %}</retries>
+    <delay>{% gosleep_client_delay if gosleep_client_delay is defined else "5s") %}</delay>
+    <broadcastip>{% gosleep_client_broadcastip if gosleep_client_broadcastip is defined else "255.255.255.255") %}</broadcastip>
+  </client>
+  <server>
+    <idletime>{% gosleep_server_time if gosleep_server_time is defined else "30m" %}</idletime>
+    <method>{% gosleep_server_method if gosleep_server_method is defined else "hibernate" %}</method>
+    <host>{% gosleep_server_host if gosleep_server_host is defined else "" %}</host>
+    <port>{% gosleep_server_port | default("8762") %}</port>
+  </server>
+</config>

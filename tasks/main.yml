@@ -1,0 +1,59 @@
+---
+# tasks file for gosleepd
+
+- name: install gosleepd
+  apt:
+    name: "{{ item }}"
+    install_recommends: "no"
+    state: "{{ state }}"
+  with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common' ]
+  when:
+    server == true
+- name: configure gosleep-server (/etc/gosleep/config.xml)
+  when:
+    server == true
+
+- name: install gowakeup
+  apt:
+    name: "{{ item }}"
+    install_recommends: "no"
+    state: "{{ state }}"
+  with_items: [ 'gowakeup', 'nfs-common' ]
+  when:
+    server == false
+- name: configure gowakeup (/etc/ethers)
+  template:
+    src: ethers.j2
+    dest: "/etc/ethers"
+    mode: "0644"
+    owner: "root"
+    group: "root"
+  when:
+    server == false
+- name: configure gowakeup (/etc/gosleep/config.xml)
+  template:
+    src: config.xml.j2
+    dest: "/etc/gosleep/config.xml"
+    mode: "0644"
+    owner: "root"
+    group: "root"
+  when:
+    server == false
+- name: configure gowakeup-start script (/usr/local/sbin/gowakeup-start)
+  template:
+    src: gowakeup-start.j2
+    dest: "/usr/local/sbin/gowakeup-start"
+    mode: "0755"
+    owner: "root"
+    group: "root"
+  when:
+    server == false
+- name: configure gowakeup (/etc/systemd/system/gowakeup.service)
+  copy:
+    src: gowakeup.service
+    dest: "/etc/systemd/system/gowakeup.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when:
+    server == false

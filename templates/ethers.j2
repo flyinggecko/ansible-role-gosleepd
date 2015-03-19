@@ -1,0 +1,10 @@
+ # Archiv-Server Andre
+#1c:7e:e5:10:b3:87 archiv.local
+00:1f:d0:ad:81:e4 archiv.local
+
+#Archiv Julian
+00:19:66:43:40:55 storage.local
+{% for host in gosleep_client_server %}
+# {% host.comment if host.comment is defined else host.host %}
+{% host.mac %} {% host.host %}
+{% endfor %}
