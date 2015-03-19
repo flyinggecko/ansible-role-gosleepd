@@ -40,8 +40,16 @@
     mode: "0644"
     owner: "root"
     group: "root"
+
+- name: configure gosleepd (/etc/exports)
+  template:
+    src: exports.j2
+    dest: "/etc/exports"
+    mode: "0644"
+    owner: "root"
+    group: "root"
   when:
-    server == "false"
+    server == "true"
 
 - name: configure gowakeup (/etc/ethers)
   template:
