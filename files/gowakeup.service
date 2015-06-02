@@ -1,5 +1,5 @@
 [Unit]
-Description=Service-file for mount nfs-mounts at startup with a bash-script in /usr/local/sbin/gowakeup-start
+Description=Service-file for mounting nfs/sshfs-mounts at startup with a bash-script in /usr/local/sbin/gowakeup-start
 
 [Service]
 Type=oneshot
