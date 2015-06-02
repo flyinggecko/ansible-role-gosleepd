@@ -2,4 +2,4 @@
 # defaults file for gosleepd
 state: "{{ gosleep_state | default('latest') }}"
 server: "{{ gosleep_server | default('false') }}"
-access_key: {{ gosleep_access_key | default('storage_access.key') }}
+access_key: "{{ gosleep_access_key | default('storage_access.key') }}"
