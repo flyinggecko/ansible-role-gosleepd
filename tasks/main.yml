@@ -23,7 +23,7 @@
     name: "{{ item }}"
     install_recommends: "no"
     state: "{{ state }}"
-  with_items: [ 'gowakeup', 'nfs-common', 'fuse' ]
+  with_items: [ 'gowakeup', 'nfs-common', 'fuse', 'sshfs' ]
   when:
     server == "false"
 
@@ -73,6 +73,16 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  when:
+    server == "false"
+
+- name: deploy storage access key (/root/.ssh/id_rsa)
+  copy:
+    src: "{{ access_key }}"
+    dest: "/root/.ssh/id_rsa"
+    owner: "root"
+    group: "root"
+    mode: "0600"
   when:
     server == "false"
 

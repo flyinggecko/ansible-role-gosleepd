@@ -1,6 +1,6 @@
 #!/bin/bash
 (
 {% for entry in gosleep_client_mounts %}
-    mountondemand.real --allow-other nfs://{{ entry.source_path }} {{ entry.target_path }} &
+    mountondemand.real --allow-other {{ entry.source_path }} {{ entry.target_path }} &
 {% endfor %}
 ) > /var/log/mountondemand.log 2>&1
