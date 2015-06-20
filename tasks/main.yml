@@ -1,7 +1,7 @@
 ---
 # tasks file for gosleepd
 
-- name: install gosleepd
+- name: install nfs server and other stuff
   apt:
     name: "{{ item }}"
     install_recommends: "no"
@@ -9,7 +9,17 @@
   with_items: [ 'gosleepd', 'nfs-kernel-server', 'nfs-common', 'ethtool' ]
   when:
     server == "true"
-  notify: [ 'restart gosleepd', 'restart nfs-kernel-server' ]
+  notify: [ 'restart nfs-kernel-server' ]
+
+- name: install gosleep
+  apt:
+    name: 'gosleepd'
+    install_recommends: "no"
+    default_release: "unstable"
+    state: "{{ state }}"
+  when:
+    server == "true"
+  notify: [ 'restart gosleepd' ]
 
 - name: enable gosleepd
   service:
@@ -18,12 +28,22 @@
   when:
     server == "true"
 
-- name: install gowakeup
+- name: install client-stuff
   apt:
     name: "{{ item }}"
     install_recommends: "no"
     state: "{{ state }}"
-  with_items: [ 'gowakeup', 'nfs-common', 'fuse', 'sshfs' ]
+  with_items: [ 'nfs-common', 'fuse', 'sshfs' ]
+  when:
+    server == "false"
+    
+- name: install gowakeup
+  apt:
+    name: "{{ item }}"
+    default_release: "unstable"
+    install_recommends: "no"
+    state: "{{ state }}"
+  with_items: [ 'gowakeup' ]
   when:
     server == "false"
 
